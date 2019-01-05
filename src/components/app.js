@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import watermark from 'watermarkjs';
 import InputImgs from './inputImgs'
-import {ImgPreview, ImgDownload} from './imgHelpers'
+import { ImgPreview, ImgDownload } from './imgHelpers'
 
 class App extends Component {
   constructor(props) {
@@ -25,23 +25,26 @@ class App extends Component {
     watermark([sourceImg, watermarkImg])
       .image(watermark.image.lowerRight(0.5))
       .then(result => this.setState({ result: result.src })
-        // let a = document.createElement("a");
-        // // a.download = "img.png";
-        // a.href = result.src;
-        // a.text ="dl";
-        // a.download = "img.png";
-        // document.getElementById('preview').appendChild(a);
       );
   }
 
   render() {
     return (
-      <Fragment>
-        <h1>adasd</h1>
-        <InputImgs setImgs={this.setImgs} />
-        <ImgPreview imgSrc={this.state.result} />
-        <ImgDownload imgSrc={this.state.result} imgName={'img.png'}/>
-      </Fragment>
+      <div className="container pb-3">
+
+        <div className="row items-center py-3">
+          <div className="col">
+            <h1 className="text-center">Watermark</h1>
+          </div>
+        </div>
+
+        <div className="row justify-content-around">
+          <InputImgs setImgs={this.setImgs} />
+          <ImgPreview imgSrc={this.state.result} />
+          <ImgDownload imgSrc={this.state.result} imgName={'img.png'} />
+        </div>
+
+      </div>
     );
   }
 }
